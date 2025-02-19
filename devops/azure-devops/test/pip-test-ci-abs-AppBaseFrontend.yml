@@ -1,0 +1,129 @@
+trigger:
+  - none
+
+variables:
+  - template: config/config-test.yml
+  - group: vg-frd-azu-ot-test-abs-aplicacionFeBase
+
+stages:
+- stage: 'stg_bu_test_AppBaseContinuousIntegration'
+  displayName: 'stg-bu-test-AppBaseContinuousIntegration'
+  jobs:
+  - job: job_bu_CompileFrontend
+    displayName: job_bu_CompileFrontend
+    pool:
+      name: $(nameAgentPool)
+    steps:
+    - task: AzureKeyVault@2
+      inputs:
+        azureSubscription: $(serviceConnectionKVSeguridad)
+        keyVaultName: $(abs-febase-kv-name-seguridad)
+        SecretsFilter: $(secretNamesSeguridad)
+      displayName: 'Task: Extract Secrets KV Seguridad'
+    - task: AzureKeyVault@2
+      inputs:
+        azureSubscription: $(serviceConnectionKVDSO)
+        keyVaultName: $(abs-febase-kv-name-dso)
+        SecretsFilter: $(secretNamesDSO)
+      displayName: 'Task: Extract Secrets KV DevSecOps'
+    - task: Bash@3
+      inputs:
+        targetType: 'inline'
+        script: 'sed -i ''s/desa/$(environment)/g'' .npmrc'
+        workingDirectory: '$(principalPath)'
+      displayName: 'stp-ReplaceNpmrc'
+    - task: npmAuthenticate@0
+      displayName: 'stp-NPMAuthentication'
+      inputs:
+        workingFile: $(principalPath)/.npmrc
+        customEndpoint: 'scn-test-orgnssfebase-aplicacionFeBaseAppFrontend'
+    - task: replacetokens@6
+      inputs:
+        root: '$(principalPath)/environments'
+        sources: '.env.$(environment)'
+        addBOM: true
+      displayName: 'stp-ReplaceTokensEnv'
+    - task: CmdLine@2
+      inputs:
+        script: |
+          cp $(principalPath)/environments/.env.$(environment) $(principalPath)/.env
+      displayName: 'stp-CopyEnvFile'
+    - task: CmdLine@2
+      inputs:
+        script: |
+          cd $(principalPath)
+          #Dependencia por instalación de husky
+          git init
+          ls -la
+      displayName: 'stp-GitInitDirectory'
+    - task: CmdLine@2
+      inputs:
+        script: |
+          cd $(principalPath)
+          export PATH=/usr/local/nodejs/bin:$PATH
+          npm install
+      displayName: 'stp-InstallDependencies'
+    - task: CmdLine@2
+      inputs:
+        script: |
+          cd $(principalPath)
+          export PATH=/usr/local/nodejs/bin:$PATH
+          npm run test
+      displayName: 'stp-UnitTestsProject'
+    - task: CmdLine@2
+      inputs:
+        script: |
+          cd $(principalPath)
+          export PATH=/usr/local/nodejs/bin:$PATH
+          npm run build
+      displayName: 'stp-CompileProject'
+    - task: ArchiveFiles@2
+      displayName: 'stp-ArchiveArtifacts'
+      inputs:
+        rootFolderOrFile: '$(principalPath)/dist'
+        includeRootFolder: false
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(principalPath).zip'
+        replaceExistingArchive: true
+    - task: PublishBuildArtifacts@1
+      displayName: 'stp-PublishZipArtifacts'
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: '$(pipeline-artifact-name1)'
+    - script: |
+        git config user.email $(all-febase-azrepos-email)
+        git config user.name $(all-febase-azrepos-name)
+
+        REPO_URL=$(Build.Repository.Uri)
+        PARTIAL_URL=${REPO_URL#https://Org-NSS-PacificoSalud}
+
+        # Obtener la última etiqueta
+        LAST_TAG=$(git describe --tags `git rev-list --tags --max-count=1` 2>/dev/null)
+        if [ -z "$LAST_TAG" ]; then
+          LAST_TAG="v1.0.0-test-$(date +%Y%m%d)"
+        fi
+
+        # Dividir la etiqueta en partes
+        IFS='.-' read -r -a VERSION_PARTS <<< "${LAST_TAG#v}"
+        MAJOR=${VERSION_PARTS[0]}
+        MINOR=${VERSION_PARTS[1]}
+        PATCH=${VERSION_PARTS[2]}
+
+        # Incrementar la versión
+        PATCH=$((PATCH + 1))
+        if [ "$PATCH" -ge 10 ]; then
+          PATCH=0
+          MINOR=$((MINOR + 1))
+        fi
+        if [ "$MINOR" -ge 10 ]; then
+          MINOR=0
+          MAJOR=$((MAJOR + 1))
+        fi
+
+        # Construir la nueva etiqueta
+        NEW_TAG="v${MAJOR}.${MINOR}.${PATCH}-test-$(date +%Y%m%d)"
+
+        # Crear y empujar la nueva etiqueta
+        git tag -a $NEW_TAG -m "Release $NEW_TAG"
+        git push https://$(all-febase-azrepos-pat)$PARTIAL_URL $NEW_TAG
+      displayName: 'stp-TaggingCertificationBranch'

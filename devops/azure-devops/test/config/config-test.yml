@@ -1,0 +1,19 @@
+variables:
+ #Environment
+  environment:                            'test'
+ #Folder raiz Infrastructure
+  principalPath:                          'fe-baseapplication'
+ #Service Connection
+  serviceConnection:                      'scn-test-nssplatdevsecops-abs-aplicacionFeBaseApp'
+ #Agent pool name
+  nameAgentPool:                          'agpool-bf-test-devsecops'
+  
+#Security kv
+  serviceConnectionKVSeguridad:           'scn-test-nssplatseguridad-abs-keyVault'
+  secretNamesSeguridad:                   'abs-aplicacionFeBase-test-spn-tenantid,abs-aplicacionFeBase-test-spn-clientid,abs-aplicacionFeBase-test-spn-clientsecret'
+
+  serviceConnectionKVDSO:                 'scn-test-nssplatdevsecops-abs-keyVault'
+  secretNamesDSO:                         'all-febase-azrepos-pat'
+
+## Values for Pipeline Artifacts
+  pipeline-artifact-name1:                'web-me-aw-abs-baseapplication'

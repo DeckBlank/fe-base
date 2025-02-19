@@ -1,0 +1,12 @@
+variables:
+ #Environment
+  environment:                                'dev'
+ #Folder raiz Infrastructure
+  principalPath:                              'fe-baseapplication'
+ #Service Connection
+  serviceConnection:                          'scn-desa-nssplatdevsecops-abs-aplicacionFeBaseApp'
+ #Agent pool name
+  nameAgentPool:                              'agpool-bf-desa-devsecops'
+
+## Values for Pipeline Artifacts
+  pipeline-artifact-name1:                    'web-me-aw-abs-baseapplication'
