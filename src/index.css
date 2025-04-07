@@ -39,7 +39,7 @@
 
   .dark {
     --background: 224, 71%, 4%;
-    --gradient-background: linear-gradient(313.48deg, #00A3E1 1.89%, #914490 90.2%);
+    --gradient-background: #009a3f/* linear-gradient(313.48deg, #009a3f 1.89%, #914490 90.2%) */;
 
     --muted: 223 47% 11%;
     --muted-foreground: 215.4 16.3% 56.9%;

@@ -17,6 +17,7 @@ const SelectLibraryPage = lazy(
   () => import('@fe-library/infrastructure/pages/SelectLibraryPage'),
 );
 const NotFoundPage = lazy(() => import('@fe-base/infrastructure/pages/NotFoundPage'));
+const GuestFormBasic = lazy(() => import('@fe-base/infrastructure/pages/Guest/FormBasic'));
 
 export const homeLogedPage: RouteProps = {
   path: '/',
@@ -50,6 +51,11 @@ export const notFoundPage: RouteProps = {
   path: '*',
   title: 'NOT FOUND',
   element: NotFoundPage,
+};
+export const guestFormBasic: RouteProps = {
+  path: '*',
+  title: 'GuestFormBasic',
+  element: GuestFormBasic,
 };
 
 export const protectedPages: Array<RouteProps> = [

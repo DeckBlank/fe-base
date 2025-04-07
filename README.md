@@ -260,6 +260,10 @@ Genera la carpeta build que será necesaria para subir el aplicativo a un entorn
 
 Limpia todos los archivos dentro de `./src` y muestra el resultado sin corregirlo.
 
+### `npx shadcn@2.1.8 add dialog`
+
+Agrega un componente `dialog` a la carpeta `src/component/ui`.
+
 ## 😎 Estructura del proyecto
 
 La estructura de carpetas se basa en la arquitectura hexagonal en combinación con algunas convenciones y preferencias del equipo:

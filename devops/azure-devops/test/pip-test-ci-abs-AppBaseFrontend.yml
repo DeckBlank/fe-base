@@ -95,7 +95,7 @@ stages:
         git config user.name $(all-febase-azrepos-name)
 
         REPO_URL=$(Build.Repository.Uri)
-        PARTIAL_URL=${REPO_URL#https://Org-NSS-PacificoSalud}
+        PARTIAL_URL=${REPO_URL#https://URL}
 
         # Obtener la última etiqueta
         LAST_TAG=$(git describe --tags `git rev-list --tags --max-count=1` 2>/dev/null)
