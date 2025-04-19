@@ -8,8 +8,8 @@ import {
   RadioGroupItem,
 } from '@/ui/components/ui/radio-group';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Library } from '@/modules/fe-library/domain/entities/Library';
-import { LibraryRepositoryImpl } from '@/modules/fe-library/services/library.service';
+import { Library } from '@/modules/fe-app/domain/entities/Library';
+import { LibraryRepositoryImpl } from '@/modules/fe-app/services/library.service';
 import { useTitle } from '@/modules/fe-base/contexts/titleContext';
 import { messageError } from '@/ui/utils/messages';
 import { useToast } from '@/ui/components/hooks/use-toast';

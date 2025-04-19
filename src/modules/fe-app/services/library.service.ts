@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { LibraryRepository } from '@/modules/fe-library/domain/services/LibraryRepository';
+import { LibraryRepository } from '@/modules/fe-app/domain/services/LibraryRepository';
 import {
   Library,
   IUpdateLibraryForm,
   IAddLibraryForm,
-} from '@/modules/fe-library/domain/entities/Library';
+} from '@/modules/fe-app/domain/entities/Library';
 import {
   BASE_APLICATION_API,
 } from '@/config/environments';

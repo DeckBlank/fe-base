@@ -18,7 +18,7 @@ module.exports = {
       '@ui': path.resolve(__dirname, 'src/components/ui'),
       '@fe-auth': path.resolve(__dirname, 'src/modules/fe-auth'),
       '@fe-files': path.resolve(__dirname, 'src/modules/fe-files'),
-      '@fe-library': path.resolve(__dirname, 'src/modules/fe-library'),
+      '@fe-app': path.resolve(__dirname, 'src/modules/fe-app'),
       '@fe-web-pub-sub': path.resolve(__dirname, 'src/modules/fe-web-pub-sub'),
       '@fe-base': path.resolve(__dirname, 'src/modules/fe-base'),
     },

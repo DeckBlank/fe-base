@@ -21,14 +21,14 @@ import { Eye, Pencil } from 'lucide-react';
 import {
   PaginationItems,
   PaginationParams,
-} from '@fe-library/domain/entities/Pagination';
-import { Library } from '@fe-library/domain/entities/Library';
+} from '@/modules/fe-app/domain/entities/Pagination';
+import { Library } from '@/modules/fe-app/domain/entities/Library';
 import { Link } from 'react-router-dom';
 import {
   selectLibraryPage,
   updateLibraryPage,
 } from '@/routes/appRoutes';
-import { LibraryRepositoryImpl } from '@/modules/fe-library/services/library.service';
+import { LibraryRepositoryImpl } from '@/modules/fe-app/services/library.service';
 
 import { useTitle } from '@/modules/fe-base/contexts/titleContext';
 import { Input } from '@/ui/components/ui/input';

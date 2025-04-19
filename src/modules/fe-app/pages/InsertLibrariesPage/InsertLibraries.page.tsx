@@ -15,7 +15,7 @@ import {
 import { Label } from '@/ui/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/ui/components/ui/radio-group';
 import { schemaLibraryForm } from './insertLibraryValidations';
-import { LibraryRepositoryImpl } from '@/modules/fe-library/services/library.service';
+import { LibraryRepositoryImpl } from '@/modules/fe-app/services/library.service';
 import { homeLogedPage } from '@/routes/appRoutes';
 import { useTitle } from '@/modules/fe-base/contexts/titleContext';
 import { useNavigate } from 'react-router-dom';

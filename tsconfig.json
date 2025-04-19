@@ -21,7 +21,7 @@
       "@components/*": ["./components/*"],
       "@fe-auth/*": ["./modules/fe-auth/*"],
       "@fe-files/*": ["./modules/fe-files/*"],
-      "@fe-library/*": ["./modules/fe-library/*"],
+      "@fe-app/*": ["./modules/fe-app/*"],
       "@fe-web-pub-sub/*": ["./modules/fe-web-pub-sub/*"],
       "@fe-base/*": ["./modules/fe-base/*"],
     },

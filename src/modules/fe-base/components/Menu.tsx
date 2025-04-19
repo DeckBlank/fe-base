@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/ui/components/ui/button';
 import { Link } from 'react-router-dom';
-import { createLibraryMenu } from '@/modules/fe-library/components/menuController';
+import { createLibraryMenu } from '@/modules/fe-app/components/menuController';
 
 const Menu = () => {
 

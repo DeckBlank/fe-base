@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { BASE_APLICATION_API } from '@/config/environments';
 import { WebPubSubRepositoryImpl } from '@/modules/fe-web-pub-sub/services/webPubSub.repository';
-import { ResponseAPI } from '@/modules/fe-library/domain/entities/ResponseAPI';
+import { ResponseAPI } from '@/modules/fe-app/domain/entities/ResponseAPI';
 
 jest.mock('axios');
 

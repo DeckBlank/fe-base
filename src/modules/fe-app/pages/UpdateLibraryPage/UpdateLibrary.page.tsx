@@ -18,8 +18,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import {
   IUpdateLibraryForm,
   Library,
-} from '@/modules/fe-library/domain/entities/Library';
-import { LibraryRepositoryImpl } from '@/modules/fe-library/services/library.service';
+} from '@/modules/fe-app/domain/entities/Library';
+import { LibraryRepositoryImpl } from '@/modules/fe-app/services/library.service';
 import { homeLogedPage } from '@/routes/appRoutes';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';

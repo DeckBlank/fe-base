@@ -8,20 +8,20 @@ const LoginPage = lazy(() => import('@/modules/fe-auth/pages/Login.page'));
 
 const ProfilePage = lazy(() => import('@/modules/fe-auth/pages/Profile.page'));
 const ListLibrariesPage = lazy(
-  () => import('@/modules/fe-library/pages/ListLibraries.page'),
+  () => import('@/modules/fe-app/pages/ListLibraries.page'),
 );
 const InsertLibrariesPage = lazy(
   () =>
     import(
-      '@/modules/fe-library/pages/InsertLibrariesPage/InsertLibraries.page'
+      '@/modules/fe-app/pages/InsertLibrariesPage/InsertLibraries.page'
     ),
 );
 const UpdateLibraryPage = lazy(
   () =>
-    import('@/modules/fe-library/pages/UpdateLibraryPage/UpdateLibrary.page'),
+    import('@/modules/fe-app/pages/UpdateLibraryPage/UpdateLibrary.page'),
 );
 const SelectLibraryPage = lazy(
-  () => import('@/modules/fe-library/pages/SelectLibrary.page'),
+  () => import('@/modules/fe-app/pages/SelectLibrary.page'),
 );
 const NotFoundPage = lazy(() => import('@/modules/fe-base/pages/NotFound.page'));
 
