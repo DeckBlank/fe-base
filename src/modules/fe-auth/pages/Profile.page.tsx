@@ -41,8 +41,8 @@ const ProfilePage: React.FC = () => {
             mail: response.account[0].userPrincipalName,
             lastName: response.names[0].last,
             firstName: response.names[0].first,
-            jobTitle: response.positions[0].detail.jobTitle,
-            companyName: response.positions[0].detail.company.displayName,
+            jobTitle: response.positions[0]?.detail.jobTitle,
+            companyName: response.positions[0]?.detail.company.displayName,
           });
         });
       });

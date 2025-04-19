@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/ui/components/ui/button';
 import { Link } from 'react-router-dom';
-import { X, Library, List, PlusCircle } from 'lucide-react';
-import { homeLogedPage, insertLibraryPage } from '@/routes/appRoutes';
-import { createLibraryMenu } from '@fe-library/infrastructure/components/menuController';
+import { createLibraryMenu } from '@/modules/fe-library/components/menuController';
 
 const Menu = () => {
 

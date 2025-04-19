@@ -19,11 +19,7 @@ import {
   IUpdateLibraryForm,
   Library,
 } from '@/modules/fe-library/domain/entities';
-import { LibraryRepositoryImpl } from '@/modules/fe-library/infrastructure/repository';
-import {
-  GetLibraryByIdUseCase,
-  UpdateLibraryUseCase,
-} from '@/modules/fe-library/application/useCases';
+import { LibraryRepositoryImpl } from '@/modules/fe-library/services/library.service';
 import { homeLogedPage } from '@/routes/appRoutes';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -64,9 +60,8 @@ const UpdateLibraryPage: React.FC = () => {
     getLibrary(id);
   }, [id]);
   const getLibrary = async (id: string) => {
-    const getPaginatedLibrariesUseCase = new GetLibraryByIdUseCase(libraryApi);
     try {
-      const data = await getPaginatedLibrariesUseCase.execute(id);
+      const data = await libraryApi.getLibraryById(id);
       if (data?.status === 'error') return messageError(data?.message, toast);
       if (!data?.data) {
         return messageError(data?.message, toast);
@@ -85,9 +80,8 @@ const UpdateLibraryPage: React.FC = () => {
   };
 
   const updateLibrary = async (formValues: IUpdateLibraryForm) => {
-    const updateLibraryUseCase = new UpdateLibraryUseCase(libraryApi);
     try {
-      const updated = await updateLibraryUseCase.execute({
+      const updated = await libraryApi.updateLibrary({
         ...formValues,
         updatedUser: userName,
       });

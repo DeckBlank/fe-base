@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { WebPubSubRepositoryImpl } from '@/modules/fe-web-pub-sub/infrastructure/repository';
+import { WebPubSubRepositoryImpl } from '@/modules/fe-web-pub-sub/services';
 import { ResponseAPI } from '@fe-web-pub-sub/domain/entities';
 import { BASE_APLICATION_API } from '@/config/environments';
 

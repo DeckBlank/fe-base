@@ -28,17 +28,15 @@ import {
   selectLibraryPage,
   updateLibraryPage,
 } from '@/routes/appRoutes';
-import { LibraryRepositoryImpl } from '@fe-library/infrastructure/repository';
-import { GetPaginatedLibrariesUseCase } from '@fe-library/application/useCases/GetPaginatedLibrariesUseCase';
+import { LibraryRepositoryImpl } from '@/modules/fe-library/services/library.service';
 
-import { DownloadFileUseCase } from '@fe-files/application/useCases';
-import { UploadFileUseCase } from '@fe-files/application/useCases';
 import { useTitle } from '@/modules/fe-base/contexts/titleContext';
 import { Input } from '@/ui/components/ui/input';
 import { useToast } from '@/ui/components/hooks/use-toast';
 import { messageError, messageSuccess } from '@/ui/utils/messages';
 import { useAuth } from '@/modules/fe-auth/contexts/authContext';
-import { FileRepositoryImpl } from '@fe-files/infrastructure/repository';
+import { FileRepositoryImpl } from '../services/files.service';
+
 
 const ListLibrariesPage: React.FC = () => {
   const { setTitle } = useTitle();
@@ -59,13 +57,10 @@ const ListLibrariesPage: React.FC = () => {
   const [type, setType] = useState<string>('');
   const [search, setSearch] = useState<string>('');
   const libraryApi = new LibraryRepositoryImpl(accessToken || '');
-  const getPaginatedLibrariesUseCase = new GetPaginatedLibrariesUseCase(
-    libraryApi,
-  );
   const { toast } = useToast();
   const getPaginatedLibraries = async (paginationParams: PaginationParams) => {
     try {
-      const data = await getPaginatedLibrariesUseCase.execute(paginationParams);
+      const data = await libraryApi.getPaginatedLibraries(paginationParams);
       setLibraries(data);
     } catch (error: any) {
       messageError(error.message, toast);
@@ -109,11 +104,9 @@ const ListLibrariesPage: React.FC = () => {
     setType('');
   };
   const fileRepository = new FileRepositoryImpl(accessToken || '');
-  const downloadFileUseCase = new DownloadFileUseCase(fileRepository);
-  const uploadFileUseCase = new UploadFileUseCase(fileRepository);
   const downloadFile = async () => {
     try {
-      const blob = await downloadFileUseCase.execute();
+      const blob = await fileRepository.downloadFile();
       const element = document.createElement('a');
       element.href = URL.createObjectURL(blob.file);
       element.download = blob.fileName;
@@ -133,7 +126,7 @@ const ListLibrariesPage: React.FC = () => {
       return;
     }
     try {
-      const data = await uploadFileUseCase.execute(file);
+      const data = await fileRepository.uploadFile(file);
       if (data?.status === 'error') return messageError(data?.message, toast);
       messageSuccess({
         message: data.message,

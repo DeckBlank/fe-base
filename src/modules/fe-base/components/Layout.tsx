@@ -3,28 +3,25 @@ import Sidebar from '@/modules/fe-base/components/Sidebar';
 import { Header } from '@/modules/fe-base/components/Header';
 import { TitleProvider } from '@/modules/fe-base/contexts/titleContext';
 import { Toaster } from '@/ui/components/ui/toaster/index';
-import { GetWebPubSubUrlUseCase } from '@fe-web-pub-sub/application/useCases';
 import { useToast } from '@/ui/components/hooks/use-toast';
-import WebPubSubComponent from '@fe-web-pub-sub/infrastructure/components/webPubSub';
+import WebPubSubComponent from '@/modules/fe-web-pub-sub/webPubSub';
 import { useMsal } from '@azure/msal-react';
 import { useAuth } from '@/modules/fe-auth/contexts/authContext';
 import { handleLogout } from '@/modules/fe-auth/msalt/authConfig';
-import { WebPubSubRepositoryImpl } from '@fe-web-pub-sub/infrastructure/repository';
+import { WebPubSubRepositoryImpl } from '@/modules/fe-web-pub-sub/services';
 import { messageInformative } from '@/ui/utils/messages';
-import { AuthProvider } from '@/modules/fe-auth/contexts/authContext';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const { toast } = useToast();
   const [connectionUrl, setUrlConnectionUrl] = useState<string | null>(null);
   const { accessToken } = useAuth();
   const webPubSubApi = new WebPubSubRepositoryImpl(accessToken);
-  const getWebPubSubUrlUseCase = new GetWebPubSubUrlUseCase(webPubSubApi);
   useEffect(() => {
     if(accessToken)
       connectWebPubSub();
   }, [accessToken]);
   const connectWebPubSub = async () => {
-    const response = await getWebPubSubUrlUseCase.execute();
+    const response = await webPubSubApi.getWebPubSubUrl();
     setUrlConnectionUrl(response.data?.url || null);
     messageInformative({
       title: 'WebSocket',

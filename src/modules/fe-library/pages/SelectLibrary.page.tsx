@@ -9,8 +9,7 @@ import {
 } from '@/ui/components/ui/radio-group';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Library } from '@/modules/fe-library/domain/entities/Library';
-import { LibraryRepositoryImpl } from '@/modules/fe-library/infrastructure/repository';
-import { GetLibraryByIdUseCase } from '@/modules/fe-library/application/useCases';
+import { LibraryRepositoryImpl } from '@/modules/fe-library/services/library.service';
 import { useTitle } from '@/modules/fe-base/contexts/titleContext';
 import { messageError } from '@/ui/utils/messages';
 import { useToast } from '@/ui/components/hooks/use-toast';
@@ -22,7 +21,6 @@ const SelectLibraryPage: React.FC = () => {
   const { accessToken, refreshToken } = useAuth();
   const navigate = useNavigate();
   const libraryApi = new LibraryRepositoryImpl(accessToken || '');
-  const getPaginatedLibrariesUseCase = new GetLibraryByIdUseCase(libraryApi);
   const { id } = useParams<{ id: string }>();
   const [library, setLibrary] = React.useState<Library>();
   useEffect(() => {
@@ -38,7 +36,7 @@ const SelectLibraryPage: React.FC = () => {
 
   const getLibrary = async (id: string) => {
     try {
-      const data = await getPaginatedLibrariesUseCase.execute(id);
+      const data = await libraryApi.getLibraryById(id);
       setLibrary(data?.data);
     } catch (error) {
       if (error instanceof Error) messageError(error.message, toast);

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { IAuthServiceLoginParams } from '@fe-auth/domain/interfaces';
 import { BASE_APLICATION_API } from '@/config/environments';
-import { AuthService } from '@/modules/fe-auth/services';
+import { AuthService } from '@/modules/fe-auth/services/auth.service';
 
 jest.mock('axios');
 

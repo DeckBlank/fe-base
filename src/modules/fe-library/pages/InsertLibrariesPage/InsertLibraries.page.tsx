@@ -15,8 +15,7 @@ import {
 import { Label } from '@/ui/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/ui/components/ui/radio-group';
 import { schemaLibraryForm } from './insertLibraryValidations';
-import { LibraryRepositoryImpl } from '@/modules/fe-library/infrastructure/repository';
-import { AddLibraryUseCase } from '@/modules/fe-library/application/useCases';
+import { LibraryRepositoryImpl } from '@/modules/fe-library/services/library.service';
 import { homeLogedPage } from '@/routes/appRoutes';
 import { useTitle } from '@/modules/fe-base/contexts/titleContext';
 import { useNavigate } from 'react-router-dom';
@@ -45,12 +44,11 @@ const InsertLibrariesPage: React.FC = () => {
     resolver: yupResolver(schemaLibraryForm),
     mode: 'onChange',
   });
-  const libraryApi = new LibraryRepositoryImpl(accessToken || '');
-  const createLibraryUseCase = new AddLibraryUseCase(libraryApi);
+  const libraryApi = new LibraryRepositoryImpl(accessToken || '');  
 
   const insertLibrary = async (library: any) => {
     try {
-      await createLibraryUseCase.execute({
+      await libraryApi.addLibrary({
         ...library,
         createdUser: userName
       });

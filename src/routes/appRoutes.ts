@@ -1,23 +1,32 @@
 import { lazy } from 'react';
 import { RouteProps } from './route.props';
 
-const LoginPage = lazy(() => import('@/modules/fe-auth/pages/LoginPage'));
+const LoginMsaltPage = lazy(
+  () => import('@/modules/fe-auth/pages/LoginMsalt.page'),
+);
+const LoginPage = lazy(() => import('@/modules/fe-auth/pages/Login.page'));
 
-const ProfilePage = lazy(() => import('@/modules/fe-auth/pages/ProfilePage'));
+const ProfilePage = lazy(() => import('@/modules/fe-auth/pages/Profile.page'));
 const ListLibrariesPage = lazy(
-  () => import('@fe-library/infrastructure/pages/ListLibrariesPage'),
+  () => import('@/modules/fe-library/pages/ListLibraries.page'),
 );
 const InsertLibrariesPage = lazy(
-  () => import('@fe-library/infrastructure/pages/InsertLibrariesPage/InsertLibrariesPage'),
+  () =>
+    import(
+      '@/modules/fe-library/pages/InsertLibrariesPage/InsertLibraries.page'
+    ),
 );
 const UpdateLibraryPage = lazy(
-  () => import('@fe-library/infrastructure/pages/UpdateLibraryPage/UpdateLibraryPage'),
+  () =>
+    import('@/modules/fe-library/pages/UpdateLibraryPage/UpdateLibrary.page'),
 );
 const SelectLibraryPage = lazy(
-  () => import('@fe-library/infrastructure/pages/SelectLibraryPage'),
+  () => import('@/modules/fe-library/pages/SelectLibrary.page'),
 );
 const NotFoundPage = lazy(() => import('@/modules/fe-base/pages/NotFoundPage'));
-const GuestFormBasic = lazy(() => import('@/modules/fe-base/pages/Guest/FormBasic'));
+const GuestFormBasic = lazy(
+  () => import('@/modules/fe-base/pages/Guest/FormBasic'),
+);
 
 export const homeLogedPage: RouteProps = {
   path: '/',
@@ -67,8 +76,17 @@ export const protectedPages: Array<RouteProps> = [
   notFoundPage,
 ];
 
-export const loginPage = { path: '/', title: 'LOGIN', element: LoginPage };
-export const noProtectedPages: Array<RouteProps> = [loginPage, notFoundPage];
+export const loginMsaltPage = {
+  path: '/',
+  title: 'LOGIN',
+  element: LoginMsaltPage,
+};
+export const loginPage = { path: '/login', title: 'LOGIN', element: LoginPage };
+export const noProtectedPages: Array<RouteProps> = [
+  loginMsaltPage,
+  loginPage,
+  notFoundPage,
+];
 
 export const getRouteTitle = (currentPage: string): string => {
   const page = protectedPages.find((page) =>

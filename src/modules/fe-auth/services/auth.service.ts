@@ -3,11 +3,12 @@ import {
   BASE_APLICATION_API,  
 } from '@/config/environments';
 import { IAuthService } from '@fe-auth/domain/service';
-import { IAuthServiceLoginParams } from '@fe-auth/domain/interfaces';
+import { IAuthServiceLoginParams, IBasicLoginParams } from '@fe-auth/domain/interfaces';
 
 export class AuthService implements IAuthService {
   private baseUrl: string = BASE_APLICATION_API;
-  constructor(accessToken: string) {
+  constructor(accessToken?: string) {
+    if(accessToken)
       axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
   }
 
@@ -30,5 +31,29 @@ export class AuthService implements IAuthService {
     } catch (error: any) {
       return new Error(error.message + ': No se encontro respuesta');
     }
+  }
+  async basicLogin(
+    data: IBasicLoginParams
+  ): Promise<any> {
+    const {password,email} = data;
+    const options = {
+      url: `${this.baseUrl}/auth/login`,
+      data: {password,email},
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+    };
+
+    try {
+      const response = await axios(options);
+      return response.data;
+    } catch (error: any) {
+      return new Error(error.message + ': No se encontro respuesta');
+    }
+  }
+
+  async setAccessToken(accessToken:string): Promise<any> {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
   }
 }

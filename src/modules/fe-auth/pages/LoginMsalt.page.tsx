@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Button } from '@/ui/components/ui/button';
 import { loginRequest } from '@/modules/fe-auth/msalt/authConfig';
 import { useMsal } from "@azure/msal-react";
-import { AuthService } from '@/modules/fe-auth/services';
+import { AuthService } from '@/modules/fe-auth/services/auth.service';
 
 const LoginPage: React.FunctionComponent = () => {
   const { instance } = useMsal();

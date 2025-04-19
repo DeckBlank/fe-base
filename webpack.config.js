@@ -3,13 +3,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const dotenv = require('dotenv');
 const webpack = require('webpack');
 dotenv.config();
-console.log({
-  BASE_APLICATION_API:JSON.stringify(process.env.BASE_APLICATION_API),
-  CLIENT_ID:JSON.stringify(process.env.CLIENT_ID),
-  TENANT_ID:JSON.stringify(process.env.TENANT_ID),
-  REDIRECT_URI:JSON.stringify(process.env.REDIRECT_URI),
-});
-
 
 module.exports = {
   entry: './src/index.tsx',

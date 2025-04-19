@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FileRepositoryImpl } from '@/modules/fe-files/infrastructure/repository/FileRepositoryImpl';
+import { FileRepositoryImpl } from '@/modules/fe-library/services/files.service';
 import {
   BASE_APLICATION_API,
 } from '@/config/environments';
