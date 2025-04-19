@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Layout from '@fe-base/infrastructure/components/Layout';
+import Layout from '@/modules/fe-base/components/Layout';
 
 import {
   protectedPages,
@@ -11,7 +11,7 @@ import {
   AuthenticatedTemplate,
   UnauthenticatedTemplate,
 } from '@azure/msal-react';
-import { AuthProvider } from '@fe-auth/infrastructure/contexts/authContext';
+import { AuthProvider } from '@/modules/fe-auth/contexts/authContext';
 
 function App() {
   return (

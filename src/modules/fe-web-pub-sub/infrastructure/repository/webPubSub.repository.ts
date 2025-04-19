@@ -1,13 +1,12 @@
 import axios from 'axios';
 import { ResponseAPI } from '@fe-web-pub-sub/domain/entities';
 import {
-  BASE_APLICATION_UX_URL,
-  OCP_APIM_SUBSCRIPTION_KEY,
-} from '@/lib/config/environments';
+  BASE_APLICATION_API,
+} from '@/config/environments';
 import { IwebPubSubRepository } from '@fe-web-pub-sub/domain/repository';
 
 export class WebPubSubRepositoryImpl implements IwebPubSubRepository {
-  private baseUrl: string = BASE_APLICATION_UX_URL;
+  private baseUrl: string = BASE_APLICATION_API;
   constructor(accessToken: string) {
     if (accessToken) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
@@ -19,7 +18,6 @@ export class WebPubSubRepositoryImpl implements IwebPubSubRepository {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Ocp-Apim-Subscription-Key': OCP_APIM_SUBSCRIPTION_KEY,
       },
     };
     try {

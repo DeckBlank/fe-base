@@ -1,9 +1,8 @@
 import axios from 'axios';
 import { FileRepositoryImpl } from '@/modules/fe-files/infrastructure/repository/FileRepositoryImpl';
 import {
-  OCP_APIM_SUBSCRIPTION_KEY,
-  BASE_APLICATION_UX_URL,
-} from '@/lib/config/environments';
+  BASE_APLICATION_API,
+} from '@/config/environments';
 import { mockBlob, mockFile } from '../mocks/mockFilesData';
 
 
@@ -42,12 +41,11 @@ describe('FileRepositoryImpl', () => {
       const result = await fileRepository.uploadFile(mockFile);
 
       expect(axios.post).toHaveBeenCalledWith(
-        `${BASE_APLICATION_UX_URL}/files`,
+        `${BASE_APLICATION_API}/files`,
         expect.any(FormData),
         {
           headers: {
             'Content-Type': 'multipart/form-data',
-            'Ocp-Apim-Subscription-Key': OCP_APIM_SUBSCRIPTION_KEY,
           },
         },
       );
@@ -55,14 +53,13 @@ describe('FileRepositoryImpl', () => {
       const formData = new FormData();
       formData.append('file', mockFile);
       expect(axios.post).toHaveBeenCalledWith(
-        `${BASE_APLICATION_UX_URL}/files`,
+        `${BASE_APLICATION_API}/files`,
         expect.objectContaining({
           get: expect.any(Function),
         }),
         {
           headers: {
             'Content-Type': 'multipart/form-data',
-            'Ocp-Apim-Subscription-Key': OCP_APIM_SUBSCRIPTION_KEY,
           },
         },
       );
@@ -100,18 +97,16 @@ describe('FileRepositoryImpl', () => {
       (axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValue({
         data: mockBlob,
         headers: {
-          'Ocp-Apim-Subscription-Key': OCP_APIM_SUBSCRIPTION_KEY,
         },
       });
 
       const result = await fileRepository.downloadFile();
 
       expect(axios.get).toHaveBeenCalledWith(
-        `${BASE_APLICATION_UX_URL}/files/download-latest`,
+        `${BASE_APLICATION_API}/files/download-latest`,
         {
           responseType: 'blob',
           headers: {
-            'Ocp-Apim-Subscription-Key': OCP_APIM_SUBSCRIPTION_KEY,
           },
         },
       );

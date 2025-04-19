@@ -1,9 +1,9 @@
 import { lazy } from 'react';
 import { RouteProps } from './route.props';
 
-const LoginPage = lazy(() => import('@fe-auth/infrastructure/pages/LoginPage'));
+const LoginPage = lazy(() => import('@/modules/fe-auth/pages/LoginPage'));
 
-const ProfilePage = lazy(() => import('@fe-auth/infrastructure/pages/ProfilePage'));
+const ProfilePage = lazy(() => import('@/modules/fe-auth/pages/ProfilePage'));
 const ListLibrariesPage = lazy(
   () => import('@fe-library/infrastructure/pages/ListLibrariesPage'),
 );
@@ -16,8 +16,8 @@ const UpdateLibraryPage = lazy(
 const SelectLibraryPage = lazy(
   () => import('@fe-library/infrastructure/pages/SelectLibraryPage'),
 );
-const NotFoundPage = lazy(() => import('@fe-base/infrastructure/pages/NotFoundPage'));
-const GuestFormBasic = lazy(() => import('@fe-base/infrastructure/pages/Guest/FormBasic'));
+const NotFoundPage = lazy(() => import('@/modules/fe-base/pages/NotFoundPage'));
+const GuestFormBasic = lazy(() => import('@/modules/fe-base/pages/Guest/FormBasic'));
 
 export const homeLogedPage: RouteProps = {
   path: '/',

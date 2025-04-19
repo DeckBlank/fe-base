@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/ui/components/ui/button';
+import { Input } from '@/ui/components/ui/input';
+import { Textarea } from '@/ui/components/ui/textarea';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Label } from '@/components/ui/label';
+} from '@/ui/components/ui/select';
+import { Label } from '@/ui/components/ui/label';
 import {
   RadioGroup,
   RadioGroupItem,
-} from '@/components/ui/radio-group';
+} from '@/ui/components/ui/radio-group';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
   IUpdateLibraryForm,
@@ -27,11 +27,11 @@ import {
 import { homeLogedPage } from '@/routes/appRoutes';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useTitle } from '@fe-base/infrastructure/contexts/titleContext';
+import { useTitle } from '@/modules/fe-base/contexts/titleContext';
 import { schemaUpdateLibraryForm } from './libraryFormValidator';
-import { useToast } from '@/components/hooks/use-toast';
-import { messageError, messageSuccess } from '@/lib/utils/messages';
-import { useAuth } from '@fe-auth/infrastructure/contexts/authContext';
+import { useToast } from '@/ui/components/hooks/use-toast';
+import { messageError, messageSuccess } from '@/ui/utils/messages';
+import { useAuth } from '@/modules/fe-auth/contexts/authContext';
 
 const UpdateLibraryPage: React.FC = () => {
   const { toast } = useToast();

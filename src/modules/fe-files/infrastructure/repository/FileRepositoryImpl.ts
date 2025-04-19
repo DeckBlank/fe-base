@@ -1,13 +1,12 @@
 import axios from 'axios';
 
 import {
-  BASE_APLICATION_UX_URL,
-  OCP_APIM_SUBSCRIPTION_KEY,
-} from '@/lib/config/environments';
+  BASE_APLICATION_API,
+} from '@/config/environments';
 import { FileRepository } from '../../domain/repository/FileRepository';
 
 export class FileRepositoryImpl implements FileRepository {
-  private baseUrl: string = BASE_APLICATION_UX_URL;
+  private baseUrl: string = BASE_APLICATION_API;
   constructor(accessToken: string) {
     if (accessToken) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
@@ -20,7 +19,6 @@ export class FileRepositoryImpl implements FileRepository {
       const response = await axios.post(`${this.baseUrl}/files`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-          'Ocp-Apim-Subscription-Key': OCP_APIM_SUBSCRIPTION_KEY,
         },
       });
       return response.data;
@@ -34,7 +32,6 @@ export class FileRepositoryImpl implements FileRepository {
       const response = await axios.get(url,{
         responseType: 'blob',
         headers: {
-          'Ocp-Apim-Subscription-Key': OCP_APIM_SUBSCRIPTION_KEY,
         }
       })
       const file = response.data;

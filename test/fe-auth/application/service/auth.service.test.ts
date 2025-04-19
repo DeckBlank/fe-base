@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 import { IAuthServiceLoginParams } from '@fe-auth/domain/interfaces';
-import { BASE_APLICATION_UX_URL, OCP_APIM_SUBSCRIPTION_KEY } from '@/lib/config/environments';
-import { AuthService } from '@/modules/fe-auth/application/services';
+import { BASE_APLICATION_API } from '@/config/environments';
+import { AuthService } from '@/modules/fe-auth/services';
 
 jest.mock('axios');
 
@@ -34,11 +34,10 @@ describe('AuthService', () => {
       const result = await authService.login(loginParams);
 
       expect(axios).toHaveBeenCalledWith({
-        url: `${BASE_APLICATION_UX_URL}/auth/login`,
+        url: `${BASE_APLICATION_API}/auth/login`,
         data: loginParams,
         headers: {
           'Content-Type': 'application/json',
-          'Ocp-Apim-Subscription-Key': OCP_APIM_SUBSCRIPTION_KEY,
         },
         method: 'POST',
       });
@@ -51,11 +50,10 @@ describe('AuthService', () => {
       const result = await authService.login(loginParams);
 
       expect(axios).toHaveBeenCalledWith({
-        url: `${BASE_APLICATION_UX_URL}/auth/login`,
+        url: `${BASE_APLICATION_API}/auth/login`,
         data: loginParams,
         headers: {
           'Content-Type': 'application/json',
-          'Ocp-Apim-Subscription-Key': OCP_APIM_SUBSCRIPTION_KEY,
         },
         method: 'POST',
       });

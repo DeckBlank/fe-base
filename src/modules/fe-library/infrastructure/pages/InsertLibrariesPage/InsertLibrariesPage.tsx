@@ -2,27 +2,27 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/ui/components/ui/button';
+import { Input } from '@/ui/components/ui/input';
+import { Textarea } from '@/ui/components/ui/textarea';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Label } from '@/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+} from '@/ui/components/ui/select';
+import { Label } from '@/ui/components/ui/label';
+import { RadioGroup, RadioGroupItem } from '@/ui/components/ui/radio-group';
 import { schemaLibraryForm } from './insertLibraryValidations';
 import { LibraryRepositoryImpl } from '@/modules/fe-library/infrastructure/repository';
 import { AddLibraryUseCase } from '@/modules/fe-library/application/useCases';
 import { homeLogedPage } from '@/routes/appRoutes';
-import { useTitle } from '@fe-base/infrastructure/contexts/titleContext';
+import { useTitle } from '@/modules/fe-base/contexts/titleContext';
 import { useNavigate } from 'react-router-dom';
-import { messageError, messageSuccess } from '@/lib/utils/messages';
-import { useToast } from '@/components/hooks/use-toast';
-import { useAuth } from '@fe-auth/infrastructure/contexts/authContext';
+import { messageError, messageSuccess } from '@/ui/utils/messages';
+import { useToast } from '@/ui/components/hooks/use-toast';
+import { useAuth } from '@/modules/fe-auth/contexts/authContext';
 
 const InsertLibrariesPage: React.FC = () => {
   const { toast } = useToast();

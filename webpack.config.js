@@ -61,11 +61,10 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        BASE_APLICATION_UX_URL:JSON.stringify(process.env.BASE_APLICATION_UX_URL),
+        BASE_APLICATION_API:JSON.stringify(process.env.BASE_APLICATION_API),
         CLIENT_ID:JSON.stringify(process.env.CLIENT_ID),
         TENANT_ID:JSON.stringify(process.env.TENANT_ID),
         REDIRECT_URI:JSON.stringify(process.env.REDIRECT_URI),
-        OCP_APIM_SUBSCRIPTION_KEY:JSON.stringify(process.env.OCP_APIM_SUBSCRIPTION_KEY),
       },
     }),
   ],

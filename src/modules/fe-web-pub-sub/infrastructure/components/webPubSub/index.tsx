@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import React from 'react';
 import { WebPubSubComponentProps } from './types';
-import { useToast } from '@/components/hooks/use-toast';
-import { messageInformative, messageSuccess } from '@/lib/utils/messages';
+import { useToast } from '@/ui/components/hooks/use-toast';
+import { messageInformative, messageSuccess } from '@/ui/utils/messages';
 
 const WebPubSubComponent = ({ urlConnection }: WebPubSubComponentProps) => {
   const { toast } = useToast();

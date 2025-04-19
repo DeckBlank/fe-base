@@ -10,12 +10,11 @@ import {
   IAddLibraryForm,
 } from '@/modules/fe-library/domain/entities';
 import {
-  BASE_APLICATION_UX_URL,
-  OCP_APIM_SUBSCRIPTION_KEY,
-} from '@/lib/config/environments';
+  BASE_APLICATION_API,
+} from '@/config/environments';
 
 export class LibraryRepositoryImpl implements LibraryRepository {
-  private baseUrl: string = BASE_APLICATION_UX_URL;
+  private baseUrl: string = BASE_APLICATION_API;
   constructor(accessToken: string) {
     if (accessToken) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
@@ -30,7 +29,6 @@ export class LibraryRepositoryImpl implements LibraryRepository {
       params,
       headers: {
         'Content-Type': 'application/json',
-        'Ocp-Apim-Subscription-Key': OCP_APIM_SUBSCRIPTION_KEY,
       },
       method: 'GET',
     };
@@ -49,7 +47,6 @@ export class LibraryRepositoryImpl implements LibraryRepository {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Ocp-Apim-Subscription-Key': OCP_APIM_SUBSCRIPTION_KEY,
       },
     };
     try {
@@ -68,7 +65,6 @@ export class LibraryRepositoryImpl implements LibraryRepository {
       const response = await axios.post(`${this.baseUrl}/library`, library, {
         headers: {
           'Content-Type': 'application/json',
-          'Ocp-Apim-Subscription-Key': OCP_APIM_SUBSCRIPTION_KEY,
         },
       });
       return response.data as ResponseAPI<Library>;
@@ -87,7 +83,6 @@ export class LibraryRepositoryImpl implements LibraryRepository {
       data: library,
       headers: {
         'Content-Type': 'application/json',
-        'Ocp-Apim-Subscription-Key': OCP_APIM_SUBSCRIPTION_KEY,
       },
     };
     try {
@@ -106,7 +101,6 @@ export class LibraryRepositoryImpl implements LibraryRepository {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Ocp-Apim-Subscription-Key': OCP_APIM_SUBSCRIPTION_KEY,
       },
     };
     try {

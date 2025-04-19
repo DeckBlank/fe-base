@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { WebPubSubRepositoryImpl } from '@/modules/fe-web-pub-sub/infrastructure/repository';
 import { ResponseAPI } from '@fe-web-pub-sub/domain/entities';
-import { OCP_APIM_SUBSCRIPTION_KEY, BASE_APLICATION_UX_URL } from '@/lib/config/environments';
+import { BASE_APLICATION_API } from '@/config/environments';
 
 jest.mock('axios');
 
@@ -28,11 +28,10 @@ describe('WebPubSubRepositoryImpl', () => {
       const result = await repository.getWebPubSubUrl();
 
       expect(axios).toHaveBeenCalledWith({
-        url: `${BASE_APLICATION_UX_URL}/web-pub-sub/url-connection`,
+        url: `${BASE_APLICATION_API}/web-pub-sub/url-connection`,
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Ocp-Apim-Subscription-Key': OCP_APIM_SUBSCRIPTION_KEY,
         },
       });
       expect(result).toEqual(mockResponse);
@@ -44,11 +43,10 @@ describe('WebPubSubRepositoryImpl', () => {
       const result = await repository.getWebPubSubUrl();
 
       expect(axios).toHaveBeenCalledWith({
-        url: `${BASE_APLICATION_UX_URL}/web-pub-sub/url-connection`,
+        url: `${BASE_APLICATION_API}/web-pub-sub/url-connection`,
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Ocp-Apim-Subscription-Key': OCP_APIM_SUBSCRIPTION_KEY,
         },
       });
       expect(result).toEqual({

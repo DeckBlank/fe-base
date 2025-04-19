@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/ui/components/ui/button';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
+} from '@/ui/components/ui/select';
 
 import {
   Pagination,
@@ -16,7 +16,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from '@/components/ui/pagination';
+} from '@/ui/components/ui/pagination';
 import { Eye, Pencil } from 'lucide-react';
 import {
   PaginationItems,
@@ -33,11 +33,11 @@ import { GetPaginatedLibrariesUseCase } from '@fe-library/application/useCases/G
 
 import { DownloadFileUseCase } from '@fe-files/application/useCases';
 import { UploadFileUseCase } from '@fe-files/application/useCases';
-import { useTitle } from '@fe-base/infrastructure/contexts/titleContext';
-import { Input } from '@ui/input';
-import { useToast } from '@/components/hooks/use-toast';
-import { messageError, messageSuccess } from '@/lib/utils/messages';
-import { useAuth } from '@fe-auth/infrastructure/contexts/authContext';
+import { useTitle } from '@/modules/fe-base/contexts/titleContext';
+import { Input } from '@/ui/components/ui/input';
+import { useToast } from '@/ui/components/hooks/use-toast';
+import { messageError, messageSuccess } from '@/ui/utils/messages';
+import { useAuth } from '@/modules/fe-auth/contexts/authContext';
 import { FileRepositoryImpl } from '@fe-files/infrastructure/repository';
 
 const ListLibrariesPage: React.FC = () => {

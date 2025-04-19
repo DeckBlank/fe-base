@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
+import { Button } from '@/ui/components/ui/button';
+import { Input } from '@/ui/components/ui/input';
+import { Textarea } from '@/ui/components/ui/textarea';
+import { Label } from '@/ui/components/ui/label';
 import {
   RadioGroup,
   RadioGroupItem,
-} from '@/components/ui/radio-group';
+} from '@/ui/components/ui/radio-group';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Library } from '@/modules/fe-library/domain/entities/Library';
 import { LibraryRepositoryImpl } from '@/modules/fe-library/infrastructure/repository';
 import { GetLibraryByIdUseCase } from '@/modules/fe-library/application/useCases';
-import { useTitle } from '@fe-base/infrastructure/contexts/titleContext';
-import { messageError } from '@/lib/utils/messages';
-import { useToast } from '@/components/hooks/use-toast';
-import { useAuth } from '@fe-auth/infrastructure/contexts/authContext';
+import { useTitle } from '@/modules/fe-base/contexts/titleContext';
+import { messageError } from '@/ui/utils/messages';
+import { useToast } from '@/ui/components/hooks/use-toast';
+import { useAuth } from '@/modules/fe-auth/contexts/authContext';
 
 const SelectLibraryPage: React.FC = () => {
   const toast = useToast();

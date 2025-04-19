@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { LibraryRepositoryImpl } from '@/modules/fe-library/infrastructure/repository';
 import {
-  PaginationItems,
   Library,
   ResponseAPI,
 } from '@/modules/fe-library/domain/entities';
@@ -19,9 +18,8 @@ import {
   GetPaginatedLibrariesUseCase,
 } from '@/modules/fe-library/application/useCases';
 import {
-  BASE_APLICATION_UX_URL,
-  OCP_APIM_SUBSCRIPTION_KEY,
-} from '@/lib/config/environments';
+  BASE_APLICATION_API,
+} from '@/config/environments';
 
 jest.mock('axios');
 
@@ -64,11 +62,10 @@ describe('LibraryRepositoryImpl', () => {
       const resultUseCase =
         await getLibrariesUseCase.execute(paginationParamsMock);
       expect(axios).toHaveBeenCalledWith({
-        url: `${BASE_APLICATION_UX_URL}/library`,
+        url: `${BASE_APLICATION_API}/library`,
         params: paginationParamsMock,
         headers: {
           'Content-Type': 'application/json',
-          'Ocp-Apim-Subscription-Key': OCP_APIM_SUBSCRIPTION_KEY,
         },
         method: 'GET',
       });
@@ -92,11 +89,10 @@ describe('LibraryRepositoryImpl', () => {
       });
       const result = await getLibraryById.execute(idMock);
       expect(axios).toHaveBeenCalledWith({
-        url: `${BASE_APLICATION_UX_URL}/library/${idMock}`,
+        url: `${BASE_APLICATION_API}/library/${idMock}`,
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Ocp-Apim-Subscription-Key': OCP_APIM_SUBSCRIPTION_KEY,
         },
       });
       expect(result).toEqual(mockData);
@@ -120,12 +116,12 @@ describe('LibraryRepositoryImpl', () => {
 
       const result = await repository.addLibrary(mockLibraryParamsAdd);
       expect(axios.post).toHaveBeenCalledWith(
-        `${BASE_APLICATION_UX_URL}/library`,
+        `${BASE_APLICATION_API}/library`,
         mockLibraryParamsAdd,
         {
           headers: {
             'Content-Type': 'application/json',
-            'Ocp-Apim-Subscription-Key': OCP_APIM_SUBSCRIPTION_KEY,
+
           },
         },
       );
@@ -159,12 +155,11 @@ describe('LibraryRepositoryImpl', () => {
 
       const result = await repository.updateLibrary(mockLibraryParamsUpdate);
       expect(axios).toHaveBeenCalledWith({
-        url: `${BASE_APLICATION_UX_URL}/library`,
+        url: `${BASE_APLICATION_API}/library`,
         method: 'put',
         data: mockLibraryParamsUpdate,
         headers: {
           'Content-Type': 'application/json',
-          'Ocp-Apim-Subscription-Key': OCP_APIM_SUBSCRIPTION_KEY,
         },
       });
       expect(result).toEqual(mockData);
