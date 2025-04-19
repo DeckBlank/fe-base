@@ -3,7 +3,7 @@ import { CLIENT_ID, REDIRECT_URI, TENANT_ID } from '../../../config/environments
 export const msalConfig = {
   auth: {
     clientId: CLIENT_ID,
-    authority: `https://login.microsoftonline.com/${TENANT_ID}/oauth2/v2.0/authorize`,
+    authority: `https://login.microsoftonline.com/${TENANT_ID}`,//`https://login.microsoftonline.com/${TENANT_ID}/oauth2/v2.0/authorize`,
     redirectUri: REDIRECT_URI + '/',
   },
   cache: {
