@@ -1,17 +1,16 @@
 import axios from 'axios';
-import { LibraryRepository } from '@/modules/fe-library/domain/repository';
+import { LibraryRepository } from '@/modules/fe-library/domain/services/LibraryRepository';
 import {
   Library,
-  PaginationItems,
-  PaginationParams,
-  ResponseAPI,
-  UpdateLibraryForm,
   IUpdateLibraryForm,
   IAddLibraryForm,
-} from '@/modules/fe-library/domain/entities';
+} from '@/modules/fe-library/domain/entities/Library';
 import {
   BASE_APLICATION_API,
 } from '@/config/environments';
+import { PaginationItems, PaginationParams } from '../domain/entities/Pagination';
+import { ResponseAPI } from '../domain/entities/ResponseAPI';
+import { UpdateLibraryForm } from '../domain/entities/UpdateLibraryForm';
 
 export class LibraryRepositoryImpl implements LibraryRepository {
   private baseUrl: string = BASE_APLICATION_API;

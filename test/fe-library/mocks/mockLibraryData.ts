@@ -2,8 +2,8 @@ import {
   IAddLibraryForm,
   IUpdateLibraryForm,
   Library,
-  PaginationItems,
-} from '@/modules/fe-library/domain/entities';
+} from '@/modules/fe-library/domain/entities/Library';
+import { PaginationItems } from '@/modules/fe-library/domain/entities/Pagination';
 
 export const mockLibrary: Library = {
   id: '5160c0a4-f8c7-40ec-a77b-a6eac686ad4c',

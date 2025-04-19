@@ -8,7 +8,7 @@ import WebPubSubComponent from '@/modules/fe-web-pub-sub/webPubSub';
 import { useMsal } from '@azure/msal-react';
 import { useAuth } from '@/modules/fe-auth/contexts/authContext';
 import { handleLogout } from '@/modules/fe-auth/msalt/authConfig';
-import { WebPubSubRepositoryImpl } from '@/modules/fe-web-pub-sub/services';
+import { WebPubSubRepositoryImpl } from '@/modules/fe-web-pub-sub/services/webPubSub.repository';
 import { messageInformative } from '@/ui/utils/messages';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {

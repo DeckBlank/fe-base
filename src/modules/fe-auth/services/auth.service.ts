@@ -2,8 +2,8 @@ import axios from 'axios';
 import {
   BASE_APLICATION_API,  
 } from '@/config/environments';
-import { IAuthService } from '@fe-auth/domain/service';
-import { IAuthServiceLoginParams, IBasicLoginParams } from '@fe-auth/domain/interfaces';
+import { IAuthService } from '../domain/service/IAuth.service';
+import { IAuthServiceLoginParams, IBasicLoginParams } from '../domain/interfaces/IAuthServiceLoginParams';
 
 export class AuthService implements IAuthService {
   private baseUrl: string = BASE_APLICATION_API;

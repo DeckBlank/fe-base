@@ -1,5 +1,6 @@
-import {  IAddLibraryForm, IUpdateLibraryForm} from "../entities";
-import {Library, PaginationItems, PaginationParams, ResponseAPI} from "../entities";
+import {IAddLibraryForm, IUpdateLibraryForm, Library} from "../entities/Library";
+import { PaginationItems, PaginationParams } from "../entities/Pagination";
+import { ResponseAPI } from "../entities/ResponseAPI";
 
 export interface LibraryRepository {
     getPaginatedLibraries({page, pageSize}:PaginationParams): Promise<PaginationItems<Library>>;

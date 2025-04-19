@@ -3,7 +3,7 @@ import axios from 'axios';
 import {
   BASE_APLICATION_API,
 } from '@/config/environments';
-import { FileRepository } from '../domain/repository/FileRepository';
+import { FileRepository } from '../domain/services/FileRepository';
 
 export class FileRepositoryImpl implements FileRepository {
   private baseUrl: string = BASE_APLICATION_API;

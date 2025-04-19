@@ -1,9 +1,11 @@
 import axios from 'axios';
-import { ResponseAPI } from '@fe-web-pub-sub/domain/entities';
+
 import {
   BASE_APLICATION_API,
 } from '@/config/environments';
-import { IwebPubSubRepository } from '@fe-web-pub-sub/domain/repository';
+import { ResponseAPI } from '../domain/entities/ResponseAPI';
+import { IwebPubSubRepository } from '../domain/repository/IwebPubSub.repository';
+
 
 export class WebPubSubRepositoryImpl implements IwebPubSubRepository {
   private baseUrl: string = BASE_APLICATION_API;
