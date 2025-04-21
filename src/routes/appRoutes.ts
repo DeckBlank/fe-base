@@ -59,12 +59,17 @@ export const notFoundPage: RouteProps = {
   element: NotFoundPage,
 };
 
+///TOMAR DE EJEMPLO
+const InicioPadresPage = lazy(() => import('@/modules/fe-app/pages/Inicio.padres.page'));
+export const inicioPadresPage = { path: '/p/home', title: 'HOME', element: InicioPadresPage };
+
 export const protectedPages: Array<RouteProps> = [
   perfilPage,
   homeLogedPage,
   insertLibraryPage,
   updateLibraryPage,
   selectLibraryPage,
+  inicioPadresPage,
   notFoundPage,
 ];
 
@@ -74,9 +79,13 @@ export const loginMsaltPage = {
   element: LoginMsaltPage,
 };
 export const loginPage = { path: '/login', title: 'LOGIN', element: LoginPage };
+
+
+
 export const noProtectedPages: Array<RouteProps> = [
   loginMsaltPage,
   loginPage,
+  inicioPadresPage,
   notFoundPage,
 ];
 

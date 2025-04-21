@@ -36,6 +36,8 @@ import { useToast } from '@/ui/components/hooks/use-toast';
 import { messageError, messageSuccess } from '@/ui/utils/messages';
 import { useAuth } from '@/modules/fe-auth/contexts/authContext';
 import { FileRepositoryImpl } from '../services/files.service';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/ui/components/ui/card';
+import { Label } from '@radix-ui/react-label';
 
 
 const ListLibrariesPage: React.FC = () => {
@@ -317,6 +319,40 @@ const ListLibrariesPage: React.FC = () => {
               </PaginationItem>
             </PaginationContent>
           </Pagination>
+          <Card className="w-[350px]">
+      <CardHeader>
+        <CardTitle>Create project</CardTitle>
+        <CardDescription>Deploy your new project in one-click.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form>
+          <div className="grid w-full items-center gap-4">
+            <div className="flex flex-col space-y-1.5">
+              <Label htmlFor="name">Name</Label>
+              <Input id="name" placeholder="Name of your project" />
+            </div>
+            <div className="flex flex-col space-y-1.5">
+              <Label htmlFor="framework">Framework</Label>
+              <Select>
+                <SelectTrigger id="framework">
+                  <SelectValue placeholder="Select" />
+                </SelectTrigger>
+                <SelectContent position="popper">
+                  <SelectItem value="next">Next.js</SelectItem>
+                  <SelectItem value="sveltekit">SvelteKit</SelectItem>
+                  <SelectItem value="astro">Astro</SelectItem>
+                  <SelectItem value="nuxt">Nuxt.js</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+        </form>
+      </CardContent>
+      <CardFooter className="flex justify-between">
+        <Button variant="outline">Cancel</Button>
+        <Button>Deploy</Button>
+      </CardFooter>
+    </Card>
           <div
             className={`bg-yellow-500 text-black px-4 py-2 rounded flex items-center md:w-auto `}
           >
