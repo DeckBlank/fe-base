@@ -153,7 +153,7 @@ const SelectLibraryPage: React.FC = () => {
       <div className="flex justify-center mt-4">
         <Button
           onClick={goBack}
-          className="bg-blue-500 text-white px-6 py-3 rounded text-lg font-bold"
+          className="bg-primary text-white px-6 py-3 rounded text-lg font-bold"
         >
           Regresar
         </Button>

@@ -82,7 +82,7 @@ const InsertLibrariesPage: React.FC = () => {
               className="border rounded px-4 py-2 w-full mt-1"
               {...register('library')}
             />
-            <p className="text-red-500">{errors.library?.message}</p>
+            <p className="text-destructive">{errors.library?.message}</p>
           </div>
 
           <div className="md:col-span-2">
@@ -95,7 +95,7 @@ const InsertLibrariesPage: React.FC = () => {
               className="border rounded px-4 py-2 w-full mt-1"
               {...register('version')}
             />
-            <p className="text-red-500">{errors.version?.message}</p>
+            <p className="text-destructive">{errors.version?.message}</p>
           </div>
         </div>
 
@@ -110,7 +110,7 @@ const InsertLibrariesPage: React.FC = () => {
               className="border rounded px-4 py-2 w-full mt-1"
               {...register('description')}
             />
-            <p className="text-red-500">{errors.description?.message}</p>
+            <p className="text-destructive">{errors.description?.message}</p>
           </div>
         </div>
 
@@ -134,7 +134,7 @@ const InsertLibrariesPage: React.FC = () => {
                 
               </SelectContent>
             </Select>
-            <p className="text-red-500">{errors.type?.message}</p>
+            <p className="text-destructive">{errors.type?.message}</p>
           </div>
 
           <div className="md:col-span-2">
@@ -156,7 +156,7 @@ const InsertLibrariesPage: React.FC = () => {
                 
               </SelectContent>
             </Select>
-            <p className="text-red-500">{errors.license?.message}</p>
+            <p className="text-destructive">{errors.license?.message}</p>
           </div>
         </div>
 
@@ -171,7 +171,7 @@ const InsertLibrariesPage: React.FC = () => {
               className="border rounded px-4 py-2 w-full mt-1"
               {...register('link')}
             />
-            <p className="text-red-500">{errors.link?.message}</p>
+            <p className="text-destructive">{errors.link?.message}</p>
           </div>
         </div>
 
@@ -192,14 +192,14 @@ const InsertLibrariesPage: React.FC = () => {
               <RadioGroupItem id="vulnerable" value="Vulnerable" />
               <Label htmlFor="vulnerable">Vulnerable</Label>
             </RadioGroup>
-            <p className="text-red-500">{errors.securityState?.message}</p>
+            <p className="text-destructive">{errors.securityState?.message}</p>
           </div>
         </div>
 
         <div className="flex justify-center mt-4">
           <Button
             type="submit"
-            className="bg-blue-500 text-white px-6 py-3 rounded text-lg font-bold"
+            className="bg-primary text-white px-6 py-3 rounded text-lg font-bold"
           >
             Registrar
           </Button>

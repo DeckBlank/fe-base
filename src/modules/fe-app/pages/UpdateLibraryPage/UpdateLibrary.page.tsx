@@ -241,7 +241,7 @@ const UpdateLibraryPage: React.FC = () => {
         <div className="flex justify-center mt-4">
           <Button
             type="submit"
-            className="bg-blue-500 text-white px-6 py-3 rounded text-lg font-bold"
+            className="bg-primary text-white px-6 py-3 rounded text-lg font-bold"
           >
             Modificar
           </Button>

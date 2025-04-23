@@ -88,11 +88,11 @@ const Sidebar = ({ logout }: SidebarProps) => {
         ref={sidebarRef}
       >
         <div
-          className={`relative inset-y-0 left-0 z-50 w-64 h-screen bg-cyan-600 text-white transform transition-transform ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
+          className={`relative inset-y-0 left-0 z-50 w-64 h-screen bg-primary text-white transform transition-transform ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
             }`}
         >
           <div className={`${isOpen ? 'block' : ' lg:block'}`}>
-            <div className="flex items-center justify-center h-20 md:h-20 md:bg-cyan-600">
+            <div className="flex items-center justify-center h-20 md:h-20 md:bg-primary">
               <h1 className="text-white text-2xl font-bold">
                 <Link to={homeLogedPage.path}>Aplicación Base</Link>
               </h1>

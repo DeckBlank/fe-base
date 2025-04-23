@@ -167,7 +167,7 @@ const ListLibrariesPage: React.FC = () => {
 
           <div className="flex justify-center w-full md:w-auto">
             <Button
-              className="bg-blue-500 text-white px-4 py-2 rounded"
+              className="bg-primary text-white px-4 py-2 rounded"
               disabled={!(!!securityState||!!type)}
               onClick={searchByFilters}
             >
@@ -188,7 +188,7 @@ const ListLibrariesPage: React.FC = () => {
       <div className="overflow-x-auto">
         <table className="min-w-full border-collapse border border-gray-300">
           <thead>
-            <tr className="bg-blue-500 text-white">
+            <tr className="bg-primary text-white">
               <th className="border border-gray-300 p-2">Librería</th>
               <th className="border border-gray-300 p-2">Versión</th>
               <th className="border border-gray-300 p-2">Tipo</th>
