@@ -37,7 +37,7 @@ export class AuthService implements IAuthService {
   ): Promise<any> {
     const {password,email} = data;
     const options = {
-      url: `${this.baseUrl}/auth/login`,
+      url: `${this.baseUrl}/v1/account/sign-in`,
       data: {password,email},
       headers: {
         'Content-Type': 'application/json',
@@ -55,5 +55,7 @@ export class AuthService implements IAuthService {
 
   async setAccessToken(accessToken:string): Promise<any> {
     axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+    // guardamos el accessToken en el localStorage
+    localStorage.setItem('accessToken', accessToken);
   }
 }

@@ -9,9 +9,6 @@ import { Link } from 'react-router-dom';
 import { Menu as LucidMenu, X } from 'lucide-react';
 import { homeLogedPage, perfilPage } from '@/routes/appRoutes';
 import { useNavigate } from 'react-router-dom';
-import { fetchProfileImage, loginRequest } from '@/modules/fe-auth/msalt/authConfig';
-import { useMsal } from '@azure/msal-react';
-import { callMsGraph } from '@/modules/fe-auth/msalt/graph';
 
 interface SidebarProps {
   logout: () => void;
@@ -22,7 +19,7 @@ const Sidebar = ({ logout }: SidebarProps) => {
   const [isOpen, setIsOpen] = useState(window.innerWidth >= 1024);
   const [userImage, setUserImage] = useState<string>('');
   const sidebarRef = useRef<HTMLDivElement>(null);
-  const { instance, accounts } = useMsal();
+  //const { instance, accounts } = useMsal();
   const [graphData, setGraphData] = useState({
     userPrincipalName: '',
     givenName: '',
@@ -33,10 +30,10 @@ const Sidebar = ({ logout }: SidebarProps) => {
     return `${firstName.charAt(0).toUpperCase()}${lastName ? lastName.charAt(0).toUpperCase() : ''}`;
   };
 
-  const getImageProfile = async (accessToken: string) => {
-    const userImage = await fetchProfileImage(accessToken);
-    setUserImage(userImage || '');
-  };
+  // const getImageProfile = async (accessToken: string) => {
+  //   const userImage = await fetchProfileImage(accessToken);
+  //   setUserImage(userImage || '');
+  // };
 
   const handleClickOutside = (event: MouseEvent) => {
     if (
@@ -58,22 +55,22 @@ const Sidebar = ({ logout }: SidebarProps) => {
   }, [isOpen]);
   useEffect(() => {
     setIsOpen(true);
-    requestProfileData();
+    //requestProfileData();
   }, []);
 
-  const requestProfileData = () => {
-    instance
-      .acquireTokenSilent({
-        ...loginRequest,
-        account: accounts[0],
-      })
-      .then((response) => {
-        getImageProfile(response.accessToken);
-        callMsGraph(response.accessToken).then((response) =>
-          setGraphData(response),
-        );
-      });
-  };
+  // const requestProfileData = () => {
+  //   instance
+  //     .acquireTokenSilent({
+  //       ...loginRequest,
+  //       account: accounts[0],
+  //     })
+  //     .then((response) => {
+  //       getImageProfile(response.accessToken);
+  //       callMsGraph(response.accessToken).then((response) =>
+  //         setGraphData(response),
+  //       );
+  //     });
+  // };
 
   return (
     <>

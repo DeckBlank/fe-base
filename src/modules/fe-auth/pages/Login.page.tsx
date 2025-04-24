@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import { Button } from '@/ui/components/ui/button';
 import { AuthService } from '@/modules/fe-auth/services/auth.service';
-
+import { useNavigate } from 'react-router-dom';
 const LoginPage: React.FunctionComponent = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
-
+  const navigate = useNavigate();
   const handleLogin = async () => {
     try {
       const authService = new AuthService();
       const response = await authService.basicLogin({ email, password });
-      authService.setAccessToken(response.accessToken)
-      console.log('Login exitoso', response);
+      console.log('Login exitoso2', response);
+      authService.setAccessToken(response.data.token);
+      window.location.reload();
     } catch (e: any) {
       console.error('Error al iniciar sesión', e);
       setError('Correo o contraseña incorrectos');

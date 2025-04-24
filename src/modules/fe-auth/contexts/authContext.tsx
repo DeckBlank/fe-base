@@ -5,8 +5,6 @@ import React, {
   ReactNode,
   useEffect,
 } from 'react';
-import { useMsal } from '@azure/msal-react';
-import { handleLogout, loginRequest } from '@/modules/fe-auth/msalt/authConfig';
 import { AuthContextProps } from './authContext.props';
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
@@ -22,27 +20,22 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [accessToken, setAccessToken] = useState<string>('');
   const [userName, setUserName] = useState<string>('');
-  const { instance, accounts } = useMsal();
 
   const refreshToken = async () => {
-    if (accounts.length > 0) {
-      try {
-        const token = await instance.acquireTokenSilent({
-          ...loginRequest,
-          account: accounts[0],
-        });
-        setAccessToken(token?.accessToken || '');
-        setUserName(token?.account?.name || '');
-      } catch (error) {
-        console.error('Error al obtener el access token:', error);
-        handleLogout(instance);
-      }
+    // verificamos que exista el accessToken en el localStorage
+    const accessToken = localStorage.getItem('accessToken');
+    console.log('accessToken', accessToken);
+    
+    if (accessToken) {
+      setAccessToken(accessToken);
     }
+    setUserName(localStorage.getItem('userName') || '');
+    
   };
 
   useEffect(() => {
     refreshToken();
-  }, [accounts, instance]);
+  }, []);
 
   return (
     <AuthContext.Provider value={{ accessToken, refreshToken, userName }}>

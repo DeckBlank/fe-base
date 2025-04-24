@@ -74,11 +74,11 @@ export const protectedPages: Array<RouteProps> = [
 ];
 
 export const loginMsaltPage = {
-  path: '/',
+  path: '/login',
   title: 'LOGIN',
   element: LoginMsaltPage,
 };
-export const loginPage = { path: '/login', title: 'LOGIN', element: LoginPage };
+export const loginPage = { path: '/', title: 'LOGIN', element: LoginPage };
 
 
 
